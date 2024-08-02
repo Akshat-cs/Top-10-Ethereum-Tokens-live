@@ -2,7 +2,6 @@
 import axios from "axios";
 
 const getLiquidityData = async (poolAddresses) => {
-  console.log(poolAddresses);
   let data = JSON.stringify({
     query: `
     query MyQuery ($poolAddresses: [String!]){
@@ -10,7 +9,7 @@ const getLiquidityData = async (poolAddresses) => {
     Initial_liquidity: Transfers(
       limitBy:{by:Transfer_Receiver count:2}
       orderBy: {ascending: Block_Time}
-      where: {Transfer: {Receiver: {in: $poolAddresses }}}
+      where: {Transfer: {Receiver: {in: $poolAddresses }}, TransactionStatus: {Success: true}}
     ) {
       Transaction {
         Hash
@@ -58,7 +57,6 @@ const getLiquidityData = async (poolAddresses) => {
   };
 
   let response = await axios.request(config);
-  console.log(response);
   return response.data.data.EVM;
 };
 
