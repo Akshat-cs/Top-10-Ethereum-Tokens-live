@@ -41,6 +41,8 @@ const getData = async () => {
               }
             }
             total_trades: count
+            totalbuys: count(if: {Trade: {Side: {Type: {is: sell}}}})
+			totalsells: count(if: {Trade: {Side: {Type: {is: buy}}}})
             total_traded_volume: sum(of: Trade_Side_AmountInUSD)
           }
         }

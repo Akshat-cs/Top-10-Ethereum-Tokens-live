@@ -70,9 +70,9 @@ const Home = () => {
     if (!liquidityList || liquidityList.length === 0) return "N/A";
 
     console.log("liquiditylist: ", liquidityList);
-    return `${parseFloat(liquidityList[0].Transfer.Amount).toFixed(2)}${
+    return `${parseFloat(liquidityList[0].Transfer.Amount).toFixed(2)} ${
       liquidityList[0].Transfer.Currency.Symbol
-    } + ${parseFloat(liquidityList[1].Transfer.Amount).toFixed(2)}${
+    } + ${parseFloat(liquidityList[1].Transfer.Amount).toFixed(2)} ${
       liquidityList[1].Transfer.Currency.Symbol
     }`;
   };
@@ -132,7 +132,7 @@ const Home = () => {
                 <th className="py-2 px-4 border-b">Price Change (1 Hour)</th>
                 <th className="py-2 px-4 border-b">Price Change (5 Min)</th>
                 <th className="py-2 px-4 border-b">Total Traded Volume</th>
-                <th className="py-2 px-4 border-b">Total Trades</th>
+                <th className="py-2 px-4 border-b">Txns</th>
                 <th className="py-2 px-4 border-b">Initial Liquidity</th>
                 <th className="py-2 px-4 border-b">Current Liquidity</th>
               </tr>
@@ -166,7 +166,9 @@ const Home = () => {
                       <strong>{trade.Trade.Currency.Symbol}</strong>/
                       {trade.Trade.Side.Currency.Symbol}
                     </td>
-                    <td className="py-2 px-4 border-b">${trade.Trade.end}</td>
+                    <td className="py-2 px-4 border-b">
+                      ${parseFloat(trade.Trade.end).toFixed(10)}
+                    </td>
                     <td className="py-2 px-4 border-b">
                       {trade.Trade.Dex.ProtocolName}
                     </td>
@@ -189,7 +191,16 @@ const Home = () => {
                     <td className="py-2 px-4 border-b">
                       {parseFloat(trade.total_traded_volume).toFixed(2)}{" "}
                     </td>
-                    <td className="py-2 px-4 border-b">{trade.total_trades}</td>
+                    <td className="py-2 px-4 border-b">
+                      <div>{trade.total_trades}</div>
+                      <div className="flex justify-center">
+                        <span className="text-green-500">
+                          {trade.totalbuys}
+                        </span>
+                        <span> / </span>
+                        <span className="text-red-500">{trade.totalsells}</span>
+                      </div>
+                    </td>
                     <td className="py-2 px-4 border-b">
                       {formatInitialLiquidity(initialLiquidity)}
                     </td>

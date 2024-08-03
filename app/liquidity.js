@@ -2,6 +2,9 @@
 import axios from "axios";
 
 const getLiquidityData = async (poolAddresses) => {
+  // Get the current UTC time and subtract one hour and five minutes
+  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+
   let data = JSON.stringify({
     query: `
     query MyQuery ($poolAddresses: [String!]){
@@ -41,7 +44,7 @@ const getLiquidityData = async (poolAddresses) => {
   }
 }
 `,
-    variables: { poolAddresses },
+    variables: { poolAddresses, oneHourAgo },
   });
 
   let config = {
