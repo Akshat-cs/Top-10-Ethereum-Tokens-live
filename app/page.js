@@ -118,7 +118,7 @@ const Home = () => {
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
       <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold mb-6 text-center">
-          Top 10 Ethereum Pairs
+          Top 10 Ethereum Pairs in last 1 hour
         </h1>
         <div className="overflow-x-auto mb-4">
           <table className="min-w-full bg-white border border-gray-200">
