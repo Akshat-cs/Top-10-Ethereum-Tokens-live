@@ -33,7 +33,6 @@ const getPrice = async () => {
   };
 
   let response = await axios.request(config);
-  console.log("responseeeeeeeeeeeeee:", response);
   return response.data.data.EVM.DEXTradeByTokens;
 };
 
